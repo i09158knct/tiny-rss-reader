@@ -1,0 +1,17 @@
+h1 Listing feeds
+
+table
+  tr
+    th Title
+    th
+    th
+
+  - @feeds.each do |feed|
+    tr
+      td = link_to feed.title, feed
+      td = link_to 'Edit', edit_feed_path(feed)
+      td = link_to 'Destroy', feed, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Feed', new_feed_path

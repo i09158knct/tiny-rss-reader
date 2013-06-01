@@ -1,0 +1,28 @@
+p#notice = notice
+
+.feed
+  h1.title = link_to @feed.title, @feed.url
+
+  .details
+    = 'Feed URL: '
+    = link_to @feed.url, @feed.url
+
+  .view_panel
+    button.fold_all Fold
+    button.expand_all Expand
+    = ' | '
+    button.mark_all_as_read Mark all as read
+
+  ul.entries
+    - @entries.each do |entry|
+      li.entry[class=(entry.unread ? 'unread' : '')]
+        h3.head = entry.title
+        .body
+          h6.title = link_to entry.title, entry.url, target: '_blank'
+          .summary = entry.summary
+
+
+
+= link_to 'Edit', edit_feed_path(@feed)
+'|
+= link_to 'Back', feeds_path
