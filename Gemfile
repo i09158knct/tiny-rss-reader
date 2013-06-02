@@ -13,6 +13,7 @@ group :development do
   gem 'pry-rails'
   gem 'guard'
   gem 'guard-livereload'
+  gem 'bullet'
 end
 
 group :doc do
