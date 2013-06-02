@@ -1,2 +1,9 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+h1 Listing feeds
+
+ul.feeds
+  - @feeds.each do |feed|
+    - unread_count = feed.entries.select{|e| e.unread}.count
+    li.feed[class=(unread_count == 0 ? 'empty' : '')]
+      span.feed_title = feed.title
+      span.unread_count = unread_count == 0 ? '' : "(#{unread_count})"
+
