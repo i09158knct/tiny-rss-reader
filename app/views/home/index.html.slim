@@ -1,9 +1,20 @@
 h1 Listing feeds
 
-ul.feeds
-  - @feeds.each do |feed|
-    - unread_count = feed.entries.select{|e| e.unread}.count
-    li.feed[class=(unread_count == 0 ? 'empty' : '')]
-      span.feed_title = feed.title
-      span.unread_count = unread_count == 0 ? '' : "(#{unread_count})"
+.main
+  .main_columns
+    .feeds_container
+      ul.special
+        li.all_items = link_to 'All items', '#all'
+      ul.feeds
+        - @feeds.each do |feed|
+          - unread_count = feed.entries.select{|e| e.unread}.count
+          li.feed[class=(unread_count == 0 ? 'empty' : '')]
+            a[href="##{feed.id}"]
+              span.feed_title = feed.title
+              span.unread_count = unread_count == 0 ? '' : "(#{unread_count})"
 
+    .entries_container
+      = render 'feeds/entries', entries: @feeds[6].entries
+
+
+= javascript_include_tag '/assets/home'

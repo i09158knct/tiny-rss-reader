@@ -1,25 +1,58 @@
-.feeds
-  padding: 0
+@import entries
 
-  .feed:hover
-    background-color: #eee
+.main_columns
+  display: -webkit-box
+  display: -moz-box
+  display: box
 
-  .feed:last-child
-    border-bottom: solid 1px #ccc
+  .feeds_container
+    font-size: 85%
+    width: 300px
 
-  .feed
+    .selected
+      background-color: #ffc
+
+    .special
+      font-weight: bold
+      padding-left: 0
+      list-style-type: none
+
+    .feeds
+      padding: 0
+      list-style-type: none
+
+      .feed:hover
+        background-color: #eee
+
+      .feed:last-child
+        border-bottom: solid 1px #ccc
+
+      .feed
+        padding-left: 2px
+        border-color: #ccc
+        border-style: solid
+        border-width:  1px 1px 0px 1px
+        list-style-type: none
+        font-weight: bold
+
+        a
+          display: block
+          color: #000
+          text-decoration: none
+
+
+        .unread_count
+          font-weight: normal
+          margin-left: 4px
+
+      .feed.empty
+        font-weight: normal
+        a
+          color: #555
+
+  .entries_container
     padding-left: 2px
-    border-color: #ccc
-    border-style: solid
-    border-width:  1px 1px 0px 1px
-    list-style-type: none
-    font-weight: bold
+    width: 650px
 
-    .unread_count
-      font-size: 80%
-      font-weight: normal
-      margin-left: 4px
-
-  .feed.empty
-    font-weight: normal
-    color: #555
+    .entries
+      @include entries
