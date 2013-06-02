@@ -1,54 +1,5 @@
+@import entries
+
 .feed
   .entries
-    padding: 0
-
-    .entry:last-child
-      border-bottom: solid 3px
-
-    .entry
-      border-style: solid
-      border-width:  3px 3px 0px 3px
-      list-style-type: none
-
-      .head
-        background-color: #ccc
-        font-size: 13px
-        margin: 0
-        padding: 2px
-        overflow: hidden
-        white-space: nowrap
-        text-overflow: ellipsis
-
-      .body
-        border-top: solid 1px
-        padding: 3px
-        .title
-          font-size: 18px
-          margin: 0
-          padding: 5px
-        .summary
-          margin: 10px 5px
-        .action_panel
-          .mark_as_read
-            display: none
-          .mark_as_unread
-            display: inline
-
-    .entry.unread
-      .head
-        background-color: #fff
-      .body
-        .action_panel
-          .mark_as_read
-            display: inline
-          .mark_as_unread
-            display: none
-
-
-    .current
-      .head
-        background-color: #ffc
-
-    .folded
-      .body
-        display: none
+    @include entries
