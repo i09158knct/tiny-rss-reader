@@ -4,8 +4,13 @@ class EntryLoader
   def self.updaete_all
     Feed.find_each {|feed|
       puts "loading: #{feed.title}"
-      entries = fetch_and_save_new_entries feed
-      puts "Loaded #{entries.length} items: #{feed.title}"
+      begin
+        entries = fetch_and_save_new_entries feed
+        puts "Loaded #{entries.length} items: #{feed.title}"
+      rescue Exception => e
+        puts "Error: #{feed.title} #{feed.url} #{feed.feed_url}"
+        puts e
+      end
     }
   end
 
