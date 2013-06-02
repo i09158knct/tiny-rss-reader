@@ -12,3 +12,7 @@
  *= require mousetrap
  *= require_tree .
  */
+
+.hide {
+  display: none;
+}

@@ -9,6 +9,7 @@
       list-style-type: none
 
       .head
+        background-color: #ccc
         font-size: 13px
         margin: 0
         padding: 2px
@@ -25,9 +26,22 @@
           padding: 5px
         .summary
           margin: 10px 5px
+        .action_panel
+          .mark_as_read
+            display: none
+          .mark_as_unread
+            display: inline
 
-    .entry.read
-      background-color: #ccc
+    .entry.unread
+      .head
+        background-color: #fff
+      .body
+        .action_panel
+          .mark_as_read
+            display: inline
+          .mark_as_unread
+            display: none
+
 
     .current
       .head

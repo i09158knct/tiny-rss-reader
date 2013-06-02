@@ -1,4 +1,5 @@
 TinyRssReader::Application.routes.draw do
+  put "entries/:id", to: 'entries#update'
   resources :feeds
 
   root "home#index"

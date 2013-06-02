@@ -11,7 +11,7 @@ class FeedsController < ApplicationController
   # GET /feeds/1.json
   def show
     @entries = Entry
-      .where(feed_id: @feed.id, unread: true)
+      .where(feed_id: @feed.id)
       .order('published_at DESC')
   end
 

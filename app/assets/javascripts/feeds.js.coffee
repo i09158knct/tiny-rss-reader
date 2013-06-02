@@ -1,59 +1,40 @@
-focus = (el) -> $(el)
-  .addClass('current')
-  .removeClass('folded')
-
-unfocus = (el) -> $(el)
-  .removeClass('current')
-  .addClass('folded')
-
-changeFocusTo = (el) ->
-  unfocus $('.current')
-  focus el
-
 $ ->
+  entriesView = window.main = new TinyRssReader.Views.Entries()
+  entriesView.foldAll()
 
-  $('.entry').addClass 'folded'
+  entriesView.$('a').prop('target', '_blank')
 
-
-
-  # Events
-  # ------
-
-  $('.fold_all').on 'click', -> $('.entry').addClass('folded')
-  $('.expand_all').on 'click', -> $('.entry').removeClass('folded')
-
-  $('.entries').on 'click', '.entry .head', ->
-    $entry = $(@).parent()
-
-    if $entry.hasClass 'current'
-      unfocus $entry
-    else
-      changeFocusTo $entry
-
-  $('.mark_all_as_read').on 'click', ->
-    if window.confirm('Are you sure?')
-      alert('mijissou')
 
 
   # Keybindings
   # -----------
 
-  _changeFocus = ($current, $target) ->
-    if $target[0]?
-      changeFocusTo $target
-    else if !$current[0]?
-      changeFocusTo $('.entry:first')
+  _changeTo = (offset) ->
+    currentIndex = entriesView.entries.indexOf entriesView.currentEntry
+    targetIndex = currentIndex + offset
 
-    window.scrollTo(null, $('.current').position().top)
+    nextTarget =
+      if currentIndex < 0
+        entriesView.entries[0]
+      else if currentIndex >= 0 &&
+              targetIndex >= 0 &&
+              targetIndex < entriesView.entries.length
+        entriesView.entries[targetIndex]
 
-  Mousetrap.bind 'j', ->
-    _changeFocus(
-      $('.current')
-      $('.current').next()
-    )
+    if nextTarget?
+      entriesView.toggleCurrentEntry nextTarget
 
-  Mousetrap.bind 'k', ->
-    _changeFocus(
-      $('.current')
-      $('.current').prev()
-    )
+  Mousetrap.bind key, cb for key, cb of {
+    'j': ->
+      _changeTo(+1)
+      window.scrollTo(null, $('.current').position().top)
+
+    'k': ->
+      _changeTo(-1)
+      window.scrollTo(null, $('.current').position().top)
+
+    'm': ->
+      entry = entriesView.currentEntry
+      if entry?
+        entry.model.toggleUnread()
+  }
