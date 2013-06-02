@@ -1,0 +1,10 @@
+.entries_container
+  .view_panel
+    button.fold_all Fold
+    button.expand_all Expand
+    = ' | '
+    button.mark_all_as_read Mark all as read
+
+  ul.entries
+    - entries.each do |entry|
+      = render 'feeds/entry', entry: entry

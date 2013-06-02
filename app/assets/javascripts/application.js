@@ -16,4 +16,3 @@
 //= require underscore
 //= require backbone
 //= require backbone/tiny_rss_reader
-//= require_tree .

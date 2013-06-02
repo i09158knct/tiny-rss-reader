@@ -7,28 +7,10 @@ p#notice = notice
     = 'Feed URL: '
     = link_to @feed.url, @feed.url
 
-  .entries_container
-    .view_panel
-      button.fold_all Fold
-      button.expand_all Expand
-      = ' | '
-      button.mark_all_as_read Mark all as read
-
-    ul.entries
-      - @entries.each do |entry|
-        li.entry[class=(entry.unread ? 'unread' : '') data-id=entry.id]
-          h3.head = entry.title
-          .body
-            h6.title = link_to entry.title, entry.url, target: '_blank'
-            - if entry.content.nil?
-              .summary = entry.summary
-            - else
-              .summary == entry.content
-            .action_panel
-              button.mark_as_read Mark as read
-              button.mark_as_unread Mark as unread
+  = render 'entries', entries: @entries
 
 
+= javascript_include_tag '/assets/feeds'
 
 
 = link_to 'Edit', edit_feed_path(@feed)
