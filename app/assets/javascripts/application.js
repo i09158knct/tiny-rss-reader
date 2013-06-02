@@ -15,7 +15,5 @@
 //= require mousetrap
 //= require underscore
 //= require backbone
-//= require backbone_rails_sync
-//= require backbone_datalink
 //= require backbone/tiny_rss_reader
 //= require_tree .

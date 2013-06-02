@@ -23,7 +23,6 @@ gem 'slim'
 gem 'slim-rails'
 gem 'feedzirra'
 gem 'mousetrap-rails'
-gem "rails-backbone"
 
 
 # Use ActiveModel has_secure_password
